@@ -27,7 +27,7 @@ if uploaded_file is not None:
     st.dataframe(data)
 
     st.subheader("Dataset Description")
-    describe, shape, columns, num_category, str_category, null_values = describe(data)
+    describe, shape, columns, num_category, str_category, null_values, dtypes, unique = describe(data)
     st.write(describe)
     col1, col2, col3, col4, col5 = st.columns(5)
     with col1:
@@ -49,6 +49,16 @@ if uploaded_file is not None:
     with col5:
         st.write("Counted Null Values")
         st.dataframe(null_values)
+
+    col6, col7 = st.columns(2)
+
+    with col6:
+        st.write("Columns Data-Type")
+        st.dataframe(dtypes)
+    
+    with col7:
+        st.write("All Unique Values")
+        st.write(unique)
 
     outliers = outliers(data)
     for i in range(len(outliers)):
