@@ -7,4 +7,6 @@ def data(data):
 
 
 def describe(data):
-    return data.describe()
+    num_category = [feature for feature in data.columns if data[feature].dtypes != "O"]
+    str_category = [feature for feature in data.columns if data[feature].dtypes == "O"]
+    return data.describe(), data.shape, data.columns, num_category, str_category

@@ -22,7 +22,25 @@ st.sidebar.title("Data Analysis Web App")
 
 if uploaded_file is not None:
     data = data(uploaded_file)
+
+    st.subheader("Dataset Preview")
     st.dataframe(data)
-    
-    describe = describe(data)
+
+    st.subheader("Dataset Description")
+    describe, shape, columns, num_category, str_category = describe(data)
     st.write(describe)
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.write("Dataset Shape")
+        st.write(shape)
+    with col2:
+        st.write("Dataset Columns")
+        st.write(columns)
+    
+    with col3:
+        st.write("Numeric Columns")
+        st.dataframe(num_category)
+    
+    with col4:
+        st.write("String Columns")
+        st.dataframe(str_category)
