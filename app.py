@@ -27,9 +27,9 @@ if uploaded_file is not None:
     st.dataframe(data)
 
     st.subheader("Dataset Description")
-    describe, shape, columns, num_category, str_category = describe(data)
+    describe, shape, columns, num_category, str_category, null_values = describe(data)
     st.write(describe)
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3, col4, col5 = st.columns(5)
     with col1:
         st.write("Dataset Shape")
         st.write(shape)
@@ -44,3 +44,7 @@ if uploaded_file is not None:
     with col4:
         st.write("String Columns")
         st.dataframe(str_category)
+        
+    with col5:
+        st.write("Counted Null Values")
+        st.dataframe(null_values)
