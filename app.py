@@ -1,5 +1,5 @@
 import streamlit as st
-from helper import data, describe
+from helper import data, describe, outliers
 
 st.set_page_config(
      page_title="Data Analysis Web App",
@@ -33,6 +33,7 @@ if uploaded_file is not None:
     with col1:
         st.write("Dataset Shape")
         st.write(shape)
+        
     with col2:
         st.write("Dataset Columns")
         st.write(columns)
@@ -48,3 +49,6 @@ if uploaded_file is not None:
     with col5:
         st.write("Counted Null Values")
         st.dataframe(null_values)
+
+    outliers = outliers(data)
+    st.image(outliers)
