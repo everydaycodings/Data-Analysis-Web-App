@@ -31,3 +31,9 @@ def outliers(data):
             fig.savefig(path)
             path_list.append(path)
     return path_list
+
+
+
+def drop_items(data, selected_name):
+    droped = data.drop(selected_name, axis = 1)
+    return droped

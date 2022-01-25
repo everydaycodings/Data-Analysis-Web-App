@@ -1,5 +1,5 @@
 import streamlit as st
-from helper import data, describe, outliers
+from helper import data, describe, outliers, drop_items
 
 st.set_page_config(
      page_title="Data Analysis Web App",
@@ -81,3 +81,7 @@ if uploaded_file is not None:
     #outliers = outliers(data)
     #for i in range(len(outliers)):
     #    st.image(outliers[i])
+
+    multiselected_drop = st.multiselect("Please Type or select one or Multipe Columns you want to drop", data.columns)
+    droped = drop_items(data, multiselected_drop)
+    st.write(droped)
