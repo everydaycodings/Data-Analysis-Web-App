@@ -15,10 +15,10 @@ st.set_page_config(
 
 
 
+st.sidebar.title("Data Analysis Web App")
 uploaded_file = st.sidebar.file_uploader("Upload Your file")
 
 
-st.sidebar.title("Data Analysis Web App")
 
 if uploaded_file is not None:
     data = data(uploaded_file)
