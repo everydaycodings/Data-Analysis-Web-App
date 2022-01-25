@@ -17,13 +17,13 @@ def describe(data):
 
 def outliers(data):
     plt.figure(figsize=(6,2))
-    plt.xlim(-100, 3000)
     flierprops = dict(marker='o', markerfacecolor='purple', markersize=6,
                     linestyle='none', markeredgecolor='black')
     
     path_list = []
     for i in range(len(data.columns)):
-        if data.columns[i] in num_category: 
+        if data.columns[i] in num_category:
+            plt.xlim(min(data[data.columns[i]]), max(data[data.columns[i]])) 
             plt.title("Checking Outliers for {} Column".format(data.columns[i]))
             plot = sns.boxplot(x=data.columns[i], flierprops=flierprops, data=data)
             fig = plot.get_figure()
