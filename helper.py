@@ -16,11 +16,12 @@ def describe(data):
 
 
 def outliers(data):
-    plt.figure(figsize=(10,4))
+    plt.figure(figsize=(6,2))
     plt.xlim(-100, 3000)
     flierprops = dict(marker='o', markerfacecolor='purple', markersize=6,
                     linestyle='none', markeredgecolor='black')
     
+    path_list = []
     for i in range(len(data.columns)):
         if data.columns[i] in num_category: 
             plt.title("Checking Outliers for {} Column".format(data.columns[i]))
@@ -28,4 +29,5 @@ def outliers(data):
             fig = plot.get_figure()
             path = 'temp/pic{}.png'.format(i)
             fig.savefig(path)
-    return path  
+            path_list.append(path)
+    return path_list

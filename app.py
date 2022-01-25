@@ -51,4 +51,5 @@ if uploaded_file is not None:
         st.dataframe(null_values)
 
     outliers = outliers(data)
-    st.image(outliers)
+    for i in range(len(outliers)):
+        st.image(outliers[i])
