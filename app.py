@@ -77,6 +77,6 @@ if uploaded_file is not None:
         st.text("All Unique Values")
         st.write(unique)
 
-    outliers = outliers(data)
-    for i in range(len(outliers)):
-        st.image(outliers[i])
+    #outliers = outliers(data)
+    #for i in range(len(outliers)):
+    #    st.image(outliers[i])
