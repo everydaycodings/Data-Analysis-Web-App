@@ -1,11 +1,25 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+import streamlit as st
+import datetime, pytz
 
 def data(data):
     data = pd.read_csv(data)
     return data
+
+
+def download_data(data, label):
+    current_time = datetime.datetime.now(pytz.timezone('Asia/Kolkata'))
+    current_time = "{}.{}-{}-{}".format(current_time.date(), current_time.hour, current_time.minute, current_time.second)
+    export_data = st.download_button(
+                        label="Download {} data as CSV".format(label),
+                        data=data.to_csv(),
+                        file_name='{}{}.csv'.format(label, current_time),
+                        mime='text/csv',
+                        help = "When You Click On Download Button You can download your {} CSV File".format(label)
+                    )
+    return export_data
 
 
 def describe(data):

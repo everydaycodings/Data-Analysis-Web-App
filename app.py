@@ -1,5 +1,5 @@
 import streamlit as st
-from helper import data, describe, outliers, drop_items
+from helper import data, describe, outliers, drop_items, download_data
 
 st.set_page_config(
      page_title="Data Analysis Web App",
@@ -85,3 +85,4 @@ if uploaded_file is not None:
     multiselected_drop = st.multiselect("Please Type or select one or Multipe Columns you want to drop", data.columns)
     droped = drop_items(data, multiselected_drop)
     st.write(droped)
+    drop_export = download_data(droped, label="Droped")
