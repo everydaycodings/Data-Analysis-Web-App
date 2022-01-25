@@ -26,38 +26,55 @@ if uploaded_file is not None:
     st.subheader("Dataset Preview")
     st.dataframe(data)
 
+    st.text(" ")
+    st.text(" ")
+    st.text(" ")
+
     st.subheader("Dataset Description")
     describe, shape, columns, num_category, str_category, null_values, dtypes, unique = describe(data)
     st.write(describe)
+
+    st.text(" ")
+    st.text(" ")
+    st.text(" ")
+
     col1, col2, col3, col4, col5 = st.columns(5)
     with col1:
+        st.text("Basic Information")
+        st.write("Dataset Name")
+        st.text(uploaded_file.name)
+
+        st.write("Dataset Size(MB)")
+        number = round((uploaded_file.size*0.000977)*0.000977,2)
+        st.write(number)
+
         st.write("Dataset Shape")
         st.write(shape)
         
     with col2:
-        st.write("Dataset Columns")
+        st.text("Dataset Columns")
         st.write(columns)
     
     with col3:
-        st.write("Numeric Columns")
+        st.text("Numeric Columns")
         st.dataframe(num_category)
     
     with col4:
-        st.write("String Columns")
+        st.text("String Columns")
         st.dataframe(str_category)
         
     with col5:
         st.write("Counted Null Values")
         st.dataframe(null_values)
 
-    col6, col7 = st.columns(2)
+    col6, col7, col8, col9 = st.columns(4)
 
     with col6:
-        st.write("Columns Data-Type")
+        st.text("Columns Data-Type")
         st.dataframe(dtypes)
     
     with col7:
-        st.write("All Unique Values")
+        st.text("All Unique Values")
         st.write(unique)
 
     outliers = outliers(data)
