@@ -14,7 +14,6 @@ Datasets/UPI_Payment_Apps_review/
 testing/
 test.ipynb
 model/*.h5
-temp/*.png
 model/*.hdf5
 .Python
 data/
