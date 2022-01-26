@@ -88,6 +88,6 @@ if uploaded_file is not None:
     #drop_export = download_data(droped, label="Droped")
 
     filter_column_selection = st.selectbox("Please Select or Enter a column Name: ", options=data.columns)
-    filtered_value_selection = st.multiselect("Enter Name or Select the value with you wnt want in your {} column: ".format(filter_column_selection), data[filter_column_selection].unique())
+    filtered_value_selection = st.multiselect("Enter Name or Select the value with you wnt want in your {} column(You can choose multiple values): ".format(filter_column_selection), data[filter_column_selection].unique())
     filtered_Data = filter_data(data, filter_column_selection, filtered_value_selection)
     st.write(filtered_Data)
