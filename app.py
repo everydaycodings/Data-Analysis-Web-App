@@ -93,7 +93,7 @@ if uploaded_file is not None:
     #filtered_value_selection = st.multiselect("Enter Name or Select the value which you don't want in your {} column(You can choose multiple values): ".format(filter_column_selection), data[filter_column_selection].unique())
     #filtered_data = filter_data(data, filter_column_selection, filtered_value_selection)
     #st.write(filtered_data)
-    #drop_export = download_data(filtered_data, label="filtered")
+    #filtered_export = download_data(filtered_data, label="filtered")
 
     option = st.radio(
      "Which kind of Filteration you want",
@@ -121,3 +121,4 @@ if uploaded_file is not None:
         num_filtered_data = num_filter_data(data, start_value, end_value, num_filter_column_selection, param=option)
 
     st.write(num_filtered_data)
+    num_filtered_export = download_data(num_filtered_data, label="num_filtered")
