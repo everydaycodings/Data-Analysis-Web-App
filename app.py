@@ -109,7 +109,7 @@ if uploaded_file is not None:
     selection_range = [x for x in selection_range if np.isnan(x) == False]
 
     start_value, end_value = st.select_slider(
-     'Select a range of Numbers you want to remove',
+     'Select a range of Numbers you want to edit or keep',
      options=selection_range,
      value=(min(selection_range), max(selection_range)))
     
