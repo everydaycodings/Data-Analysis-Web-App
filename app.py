@@ -80,6 +80,8 @@ if uploaded_file is not None:
         st.write("Counted Null Values")
         st.dataframe(null_values)
 
+# ==================================================================================================
+
     #outliers = outliers(data)
     #for i in range(len(outliers)):
     #    st.image(outliers[i])
@@ -89,11 +91,15 @@ if uploaded_file is not None:
     #st.write(droped)
     #drop_export = download_data(droped, label="Droped")
 
+# =====================================================================================================================================
+
     #filter_column_selection = st.selectbox("Please Select or Enter a column Name: ", options=data.columns)
     #filtered_value_selection = st.multiselect("Enter Name or Select the value which you don't want in your {} column(You can choose multiple values): ".format(filter_column_selection), data[filter_column_selection].unique())
     #filtered_data = filter_data(data, filter_column_selection, filtered_value_selection)
     #st.write(filtered_data)
     #filtered_export = download_data(filtered_data, label="filtered")
+
+# =============================================================================================================================
 
     option = st.radio(
      "Which kind of Filteration you want",
