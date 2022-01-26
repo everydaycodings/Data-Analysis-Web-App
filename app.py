@@ -95,6 +95,10 @@ if uploaded_file is not None:
     #st.write(filtered_data)
     #drop_export = download_data(filtered_data, label="filtered")
 
+    option = st.radio(
+     "Which kind of Filteration you want",
+     ('Delete data inside the range', 'Delete data outside the range'))
+
     num_filter_column_selection = st.selectbox("Please Select or Enter a column Name: ", options=num_category)
     selection_range = data[num_filter_column_selection].unique()
 
@@ -108,8 +112,12 @@ if uploaded_file is not None:
      'Select a range of Numbers you want to remove',
      options=selection_range,
      value=(min(selection_range), max(selection_range)))
+    
+    if option == "Delete data inside the range":
+        st.write('We will be removing all the values between', int(start_value), 'and', end_value)
+        num_filtered_data = num_filter_data(data, start_value, end_value, num_filter_column_selection, param="Delete data inside the range")
+    else:
+        st.write('We will be Keeping all the values between', int(start_value), 'and', end_value)
+        num_filtered_data = num_filter_data(data, start_value, end_value, num_filter_column_selection, param="Delete data outside the range")
 
-    st.write('We will be removing all the values between', int(start_value), 'and', end_value)
-
-    num_filtered_data = num_filter_data(data, start_value, end_value, num_filter_column_selection)
     st.write(num_filtered_data)
