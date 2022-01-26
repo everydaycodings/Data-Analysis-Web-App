@@ -115,9 +115,9 @@ if uploaded_file is not None:
     
     if option == "Delete data inside the range":
         st.write('We will be removing all the values between', int(start_value), 'and', end_value)
-        num_filtered_data = num_filter_data(data, start_value, end_value, num_filter_column_selection, param="Delete data inside the range")
+        num_filtered_data = num_filter_data(data, start_value, end_value, num_filter_column_selection, param=option)
     else:
         st.write('We will be Keeping all the values between', int(start_value), 'and', end_value)
-        num_filtered_data = num_filter_data(data, start_value, end_value, num_filter_column_selection, param="Delete data outside the range")
+        num_filtered_data = num_filter_data(data, start_value, end_value, num_filter_column_selection, param=option)
 
     st.write(num_filtered_data)
