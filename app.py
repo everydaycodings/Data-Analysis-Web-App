@@ -82,12 +82,12 @@ if uploaded_file is not None:
     #for i in range(len(outliers)):
     #    st.image(outliers[i])
 
-    #multiselected_drop = st.multiselect("Please Type or select one or Multipe Columns you want to drop", data.columns)
+    #multiselected_drop = st.multiselect("Please Type or select one or Multipe Columns you want to drop: ", data.columns)
     #droped = drop_items(data, multiselected_drop)
     #st.write(droped)
     #drop_export = download_data(droped, label="Droped")
 
-    filter_column_selection = st.selectbox("this is it", options=data.columns)
-    filtered_value_selection = st.multiselect("2one", data[filter_column_selection].unique())
+    filter_column_selection = st.selectbox("Please Select or Enter a column Name: ", options=data.columns)
+    filtered_value_selection = st.multiselect("Enter Name or Select the value with you wnt want in your {} column: ".format(filter_column_selection), data[filter_column_selection].unique())
     filtered_Data = filter_data(data, filter_column_selection, filtered_value_selection)
     st.write(filtered_Data)
