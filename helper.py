@@ -51,3 +51,11 @@ def outliers(data):
 def drop_items(data, selected_name):
     droped = data.drop(selected_name, axis = 1)
     return droped
+
+
+def filter_data(data, selected_column, selected_name):
+    if selected_name == []:
+        filtered_data = data
+    else:
+        filtered_data = data[~ data[selected_column].isin(selected_name)]
+    return filtered_data
