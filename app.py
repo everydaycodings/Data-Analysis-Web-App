@@ -1,6 +1,6 @@
 from cmath import nan
 import streamlit as st
-from helper import data, describe, outliers, drop_items, download_data, filter_data, num_filter_data
+from helper import data, describe, outliers, drop_items, download_data, filter_data, num_filter_data, rename_columns
 import numpy as np
 
 st.set_page_config(
@@ -122,3 +122,23 @@ if uploaded_file is not None:
 
     st.write(num_filtered_data)
     num_filtered_export = download_data(num_filtered_data, label="num_filtered")
+
+
+# =======================================================================================================================================
+    if 'rename_dict' not in st.session_state:
+        st.session_state.rename_dict = {}
+
+    rename_dict = {}
+    rename_column_selector = st.selectbox("Please Select or Enter a column Name you want to rename: ", options=data.columns)
+    rename_text_data = st.text_input("d", max_chars=50)
+
+    if rename_text_data != "":
+
+        if st.button("Draft Changes", help="when you want to rename multiple columns/single column  so first you have to click Save Draft button this update your data and then press Rename Columns Button."):
+            st.session_state.rename_dict[rename_column_selector] = rename_text_data
+        st.code(st.session_state.rename_dict)
+
+        if st.button("Rename Columns", help="Takes your data and rename the column as your wish."):
+            rename_column = rename_columns(data, st.session_state.rename_dict)
+            st.write(rename_column)
+            st.session_state.rename_dict = {}

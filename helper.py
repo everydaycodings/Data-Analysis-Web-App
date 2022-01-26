@@ -70,3 +70,8 @@ def num_filter_data(data, start_value, end_value, column, param):
             num_filtered_data = data[data[column].isin(range(int(start_value), int(end_value)+1))]
     
     return num_filtered_data
+
+
+def rename_columns(data, column_names):
+    rename_column = data.rename(columns=column_names)
+    return rename_column
