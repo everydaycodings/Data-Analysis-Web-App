@@ -1,5 +1,7 @@
+from cmath import nan
 import streamlit as st
-from helper import data, describe, outliers, drop_items, download_data, filter_data
+from helper import data, describe, outliers, drop_items, download_data, filter_data, num_filter_data
+import numpy as np
 
 st.set_page_config(
      page_title="Data Analysis Web App",
@@ -87,8 +89,27 @@ if uploaded_file is not None:
     #st.write(droped)
     #drop_export = download_data(droped, label="Droped")
 
-    filter_column_selection = st.selectbox("Please Select or Enter a column Name: ", options=data.columns)
-    filtered_value_selection = st.multiselect("Enter Name or Select the value which you don't want in your {} column(You can choose multiple values): ".format(filter_column_selection), data[filter_column_selection].unique())
-    filtered_data = filter_data(data, filter_column_selection, filtered_value_selection)
-    st.write(filtered_data)
-    drop_export = download_data(filtered_data, label="filtered")
+    #filter_column_selection = st.selectbox("Please Select or Enter a column Name: ", options=data.columns)
+    #filtered_value_selection = st.multiselect("Enter Name or Select the value which you don't want in your {} column(You can choose multiple values): ".format(filter_column_selection), data[filter_column_selection].unique())
+    #filtered_data = filter_data(data, filter_column_selection, filtered_value_selection)
+    #st.write(filtered_data)
+    #drop_export = download_data(filtered_data, label="filtered")
+
+    num_filter_column_selection = st.selectbox("Please Select or Enter a column Name: ", options=num_category)
+    selection_range = data[num_filter_column_selection].unique()
+
+    for i in range(0, len(selection_range)) :
+        selection_range[i] = selection_range[i]
+    selection_range.sort()
+
+    selection_range = [x for x in selection_range if np.isnan(x) == False]
+
+    start_value, end_value = st.select_slider(
+     'Select a range of Numbers you want to remove',
+     options=selection_range,
+     value=(min(selection_range), max(selection_range)))
+
+    st.write('We will be removing all the values between', int(start_value), 'and', end_value)
+
+    num_filtered_data = num_filter_data(data, start_value, end_value, num_filter_column_selection)
+    st.write(num_filtered_data)

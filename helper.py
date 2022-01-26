@@ -59,3 +59,9 @@ def filter_data(data, selected_column, selected_name):
     else:
         filtered_data = data[~ data[selected_column].isin(selected_name)]
     return filtered_data
+
+def num_filter_data(data, start_value, end_value, column):
+    if column in num_category:
+        num_filtered_data = data[~data[column].isin(range(int(start_value), int(end_value)+1))]
+    
+    return num_filtered_data
