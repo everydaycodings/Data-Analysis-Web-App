@@ -41,21 +41,24 @@ def describe(data):
     return data.describe(), data.shape, data.columns, num_category, str_category, data.isnull().sum(),data.dtypes.astype("str"), data.nunique(), str_category
 
 
-def outliers(data):
+def outliers(data, num_category_outliers):
     plt.figure(figsize=(6,2))
     flierprops = dict(marker='o', markerfacecolor='purple', markersize=6,
                     linestyle='none', markeredgecolor='black')
     
     path_list = []
-    for i in range(len(data.columns)):
-        if data.columns[i] in num_category:
-            plt.xlim(min(data[data.columns[i]]), max(data[data.columns[i]])) 
-            plt.title("Checking Outliers for {} Column".format(data.columns[i]))
-            plot = sns.boxplot(x=data.columns[i], flierprops=flierprops, data=data)
-            fig = plot.get_figure()
-            path = 'temp/pic{}.png'.format(i)
-            fig.savefig(path)
-            path_list.append(path)
+    for i in range(len(num_category_outliers)):
+        
+        column = num_category_outliers[i]
+        plt.xlim(min(data[column]), max(data[column])) 
+        plt.title("Checking Outliers for {} Column".format(column))
+        plot = sns.boxplot(x=column, flierprops=flierprops, data=data)
+        fig = plot.get_figure()
+
+        path = 'temp/pic{}.png'.format(i)
+        fig.savefig(path)
+        path_list.append(path)
+
     return path_list
 
 

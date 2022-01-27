@@ -95,8 +95,10 @@ if uploaded_file is not None:
 
 # ==================================================================================================
     if "Outliers" in multi_function_selector:
+
+        outliers_selection = st.multiselect("Enter or select Name of the columns to see Outliers:", num_category)
+        outliers = outliers(data, outliers_selection)
         
-        outliers = outliers(data)
         for i in range(len(outliers)):
             st.image(outliers[i])
 # ===================================================================================================
