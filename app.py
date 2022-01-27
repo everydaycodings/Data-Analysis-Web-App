@@ -147,9 +147,11 @@ if uploaded_file is not None:
         if st.button("Rename Columns", help="Takes your data and rename the column as your wish."):
             rename_column = rename_columns(data, st.session_state.rename_dict)
             st.write(rename_column)
+            export_rename_column = download_data(rename_column, label="rename_column")
             st.session_state.rename_dict = {}
 
 # ===================================================================================================================
+ 
     multi_bar_plotting = st.multiselect("Enter Name or Select the Column which you Want To Plot: ", str_category)
     for i in range(len(multi_bar_plotting)):
         column = multi_bar_plotting[i]
