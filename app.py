@@ -16,7 +16,7 @@ st.set_page_config(
 )
 
 
-file_format_type = ["csv", "json", "txt"]
+file_format_type = ["csv", "txt"]
 st.sidebar.title("Data Analysis Web App")
 uploaded_file = st.sidebar.file_uploader("Upload Your file", type=file_format_type)
 
