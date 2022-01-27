@@ -16,17 +16,26 @@ st.set_page_config(
 )
 
 
-
+file_format_type = ["csv", "json", "txt"]
 st.sidebar.title("Data Analysis Web App")
-uploaded_file = st.sidebar.file_uploader("Upload Your file")
+uploaded_file = st.sidebar.file_uploader("Upload Your file", type=file_format_type)
+
 functions = ["Overview", "Outliers", "Drop Columns", "Drop Categorical Rows", "Drop Numeric Rows", "Rename Columns", "Display Plot"]
 
 
 if uploaded_file is not None:
 
-    data = data(uploaded_file)
-    describe, shape, columns, num_category, str_category, null_values, dtypes, unique, str_category= describe(data)
+    file_type = uploaded_file.type.split("/")[1]
+
+    if file_type == "plain":
+        seperator = st.sidebar.text_input("Please Enter what seperates your data: ", max_chars=5) 
+        data = data(uploaded_file, file_type,seperator)
+
+    else:
+        data = data(uploaded_file, file_type)
     
+    describe, shape, columns, num_category, str_category, null_values, dtypes, unique, str_category= describe(data)
+
     multi_function_selector = st.sidebar.multiselect("Enter Name or Select the Column which you Want To Plot: ",functions, default=["Overview"])
 
     st.subheader("Dataset Preview")

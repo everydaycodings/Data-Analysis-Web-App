@@ -4,8 +4,20 @@ import seaborn as sns
 import streamlit as st
 import datetime, pytz
 
-def data(data):
-    data = pd.read_csv(data)
+def data(data, file_type, seperator=None):
+
+    if file_type == "csv":
+        data = pd.read_csv(data)
+
+    elif file_type == "json":
+        data = pd.read_json(data)
+    
+    elif file_type == "plain":
+        try:
+            data = pd.read_csv(data, sep=seperator)
+        except ValueError:
+            st.info("If you haven't Type the separator then dont worry about the error this error will go as you type the separator value and hit Enter.")
+
     return data
 
 
