@@ -33,7 +33,7 @@ if uploaded_file is not None:
     st.text(" ")
 
     st.subheader("Dataset Description")
-    describe, shape, columns, num_category, str_category, null_values, dtypes, unique= describe(data)
+    describe, shape, columns, num_category, str_category, null_values, dtypes, unique, str_category= describe(data)
     st.write(describe)
 
     st.text(" ")
@@ -136,11 +136,11 @@ if uploaded_file is not None:
 
     rename_dict = {}
     rename_column_selector = st.selectbox("Please Select or Enter a column Name you want to rename: ", options=data.columns)
-    rename_text_data = st.text_input("d", max_chars=50)
+    rename_text_data = st.text_input("Enter the New Name for the {} column".format(rename_column_selector), max_chars=50)
 
     if rename_text_data != "":
 
-        if st.button("Draft Changes", help="when you want to rename multiple columns/single column  so first you have to click Save Draft button this update your data and then press Rename Columns Button."):
+        if st.button("Draft Changes", help="when you want to rename multiple columns/single column  so first you have to click Save Draft button this updates the data and then press Rename Columns Button."):
             st.session_state.rename_dict[rename_column_selector] = rename_text_data
         st.code(st.session_state.rename_dict)
 
@@ -148,3 +148,10 @@ if uploaded_file is not None:
             rename_column = rename_columns(data, st.session_state.rename_dict)
             st.write(rename_column)
             st.session_state.rename_dict = {}
+
+# ===================================================================================================================
+    multi_bar_plotting = st.multiselect("Enter Name or Select the Column which you Want To Plot): ", str_category)
+    for i in range(len(multi_bar_plotting)):
+        st.markdown("#### Bar Plot for {} column".format(multi_bar_plotting[i]))
+        bar_plot = data[multi_bar_plotting[i]].value_counts().reset_index()
+        st.bar_chart(bar_plot)

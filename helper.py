@@ -23,10 +23,10 @@ def download_data(data, label):
 
 
 def describe(data):
-    global num_category
+    global num_category, str_category
     num_category = [feature for feature in data.columns if data[feature].dtypes != "O"]
     str_category = [feature for feature in data.columns if data[feature].dtypes == "O"]
-    return data.describe(), data.shape, data.columns, num_category, str_category, data.isnull().sum(),data.dtypes.astype("str"), data.nunique()
+    return data.describe(), data.shape, data.columns, num_category, str_category, data.isnull().sum(),data.dtypes.astype("str"), data.nunique(), str_category
 
 
 def outliers(data):
