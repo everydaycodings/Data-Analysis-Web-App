@@ -150,8 +150,9 @@ if uploaded_file is not None:
             st.session_state.rename_dict = {}
 
 # ===================================================================================================================
-    multi_bar_plotting = st.multiselect("Enter Name or Select the Column which you Want To Plot): ", str_category)
+    multi_bar_plotting = st.multiselect("Enter Name or Select the Column which you Want To Plot: ", str_category)
     for i in range(len(multi_bar_plotting)):
-        st.markdown("#### Bar Plot for {} column".format(multi_bar_plotting[i]))
-        bar_plot = data[multi_bar_plotting[i]].value_counts().reset_index()
+        column = multi_bar_plotting[i]
+        st.markdown("#### Bar Plot for {} column".format(column))
+        bar_plot = data[column].value_counts().reset_index().sort_values(by=column, ascending=False)
         st.bar_chart(bar_plot)
