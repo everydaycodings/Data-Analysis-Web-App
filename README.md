@@ -26,7 +26,7 @@
 Check out the live demo: https://data-analysis-webapp.herokuapp.com/
 
 ### Vedio demo:
-<p><img  alt="GIF" src="https://github.com/everydaycodings/Simpsons-Character-Image-Recognition/blob/master/images/live_demo.gif" width="800" height="450" /></p>
+<p><img  alt="GIF" src="https://github.com/everydaycodings/Data-Analysis-Web-App/blob/master/presentation/vedio.gif" width="800" height="450" /></p>
 
 # Note
 
