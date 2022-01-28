@@ -116,7 +116,7 @@ if uploaded_file is not None:
         droped = drop_items(data, multiselected_drop)
         st.write(droped)
         
-        drop_export = download_data(droped, label="Droped")
+        drop_export = download_data(droped, label="Droped(edited)")
 
 # =====================================================================================================================================
     if "Drop Categorical Rows" in multi_function_selector:
