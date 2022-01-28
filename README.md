@@ -30,7 +30,7 @@ Check out the live demo: https://data-analysis-webapp.herokuapp.com/
 
 # Note
 
-> #### Use this URL - [Click Me](https://github.com/everydaycodings/Data-Analysis-Web-App/issues/new) - in case if you are faccing any problem with th WebApp or source code.
+> ##### Use this URL - [Click Me](https://github.com/everydaycodings/Data-Analysis-Web-App/issues/new) - in case if you are faccing any problem with th WebApp or source code.
 
 
 
