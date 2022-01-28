@@ -13,7 +13,7 @@ def data(data, file_type, seperator=None):
         data = pd.read_json(data)
     
     elif file_type == "vnd.ms-excel" or file_type == "vnd.openxmlformats-officedocument.spreadsheetml.sheet":
-        data = pd.read_excel(data, sheet_name="excel")
+        data = pd.read_excel(data)
     
     elif file_type == "plain":
         try:
