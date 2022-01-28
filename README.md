@@ -4,7 +4,7 @@
 ![Framework](https://img.shields.io/badge/Framework-sreamlit-red)
 
 
-### **Data Analysis Web App** can analysis data in multiple formates(csv, txt, xls, xlsx, ods, odt) and gives shows you the analysis in the most informative way. 
+#### **Data Analysis Web App** can analysis data in multiple formates(csv, txt, xls, xlsx, ods, odt) and gives shows you the analysis in the most informative way. 
 
 
 ## Features Of Data Analysis Web App
@@ -30,7 +30,7 @@ Check out the live demo: https://data-analysis-webapp.herokuapp.com/
 
 # Note
 
-> ##### Use this URL - [Click Me](https://github.com/everydaycodings/Data-Analysis-Web-App/issues/new) - in case if you are faccing any problem with th WebApp or source code.
+> #### Use this URL - [Click Me](https://github.com/everydaycodings/Data-Analysis-Web-App/issues/new) - in case if you are faccing any problem with th WebApp or source code.
 
 
 
