@@ -1,0 +1,8 @@
+streamlit
+pandas
+numpy
+matplotlib
+datetime
+pytz
+openpyxl
+xlrd>=1.0.0

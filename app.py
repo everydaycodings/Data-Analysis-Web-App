@@ -16,20 +16,25 @@ st.set_page_config(
 )
 
 
-file_format_type = ["csv", "txt"]
+file_format_type = ["csv", "txt", "xls", "xlsx"]
 st.sidebar.title("Data Analysis Web App")
 uploaded_file = st.sidebar.file_uploader("Upload Your file", type=file_format_type)
 
 functions = ["Overview", "Outliers", "Drop Columns", "Drop Categorical Rows", "Drop Numeric Rows", "Rename Columns", "Display Plot"]
 
+exel_type =["vnd.ms-excel","vnd.openxmlformats-officedocument.spreadsheetml.sheet"]
 
 if uploaded_file is not None:
 
     file_type = uploaded_file.type.split("/")[1]
+    
 
     if file_type == "plain":
         seperator = st.sidebar.text_input("Please Enter what seperates your data: ", max_chars=5) 
         data = data(uploaded_file, file_type,seperator)
+
+    elif file_type in exel_type:
+        data = data(uploaded_file, file_type)
 
     else:
         data = data(uploaded_file, file_type)
