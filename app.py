@@ -26,9 +26,7 @@ uploaded_file = st.sidebar.file_uploader("Upload Your file", type=file_format_ty
 if uploaded_file is not None:
 
     file_type = uploaded_file.type.split("/")[1]
-    print(file_type)
     
-
     if file_type == "plain":
         seperator = st.sidebar.text_input("Please Enter what seperates your data: ", max_chars=5) 
         data = data(uploaded_file, file_type,seperator)
