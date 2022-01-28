@@ -4,7 +4,7 @@
 ![Framework](https://img.shields.io/badge/Framework-sreamlit-red)
 
 
-## **Data Analysis Web App** can analysis data in multiple formates(csv, txt, xls, xlsx, ods, odt) and gives shows you the analysis in the most informative way. 
+### **Data Analysis Web App** can analysis data in multiple formates(csv, txt, xls, xlsx, ods, odt) and gives shows you the analysis in the most informative way. 
 
 
 ## Features Of Data Analysis Web App
@@ -14,8 +14,9 @@
 - YOu can see **Outliers** in your data in a visulization way.
 - You can *drop* *multiple columns* and *rename columns*.
 - You can *drop* **multiple categorical Rows** and **Numerical Rows** by giving **multiple conditions**.
+- You can **download/export** your edited data.
 
-#### Upcomming Features for this WebApp:
+## Upcomming Features for the WebApp:
 - Multilebel classification system for images 
 - Multiple classification system for *vedios*
 - More pleasant looking UI and many more... 
