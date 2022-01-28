@@ -16,13 +16,13 @@ st.set_page_config(
 )
 
 
-file_format_type = ["csv", "txt", "xls", "xlsx", "ods"]
+file_format_type = ["csv", "txt", "xls", "xlsx", "ods", "odt"]
 st.sidebar.title("Data Analysis Web App")
 uploaded_file = st.sidebar.file_uploader("Upload Your file", type=file_format_type)
 
 functions = ["Overview", "Outliers", "Drop Columns", "Drop Categorical Rows", "Drop Numeric Rows", "Rename Columns", "Display Plot"]
 
-exel_type =["vnd.ms-excel","vnd.openxmlformats-officedocument.spreadsheetml.sheet", "vnd.oasis.opendocument.spreadsheet"]
+excel_type =["vnd.ms-excel","vnd.openxmlformats-officedocument.spreadsheetml.sheet", "vnd.oasis.opendocument.spreadsheet", "vnd.oasis.opendocument.text"]
 
 if uploaded_file is not None:
 
@@ -34,7 +34,7 @@ if uploaded_file is not None:
         seperator = st.sidebar.text_input("Please Enter what seperates your data: ", max_chars=5) 
         data = data(uploaded_file, file_type,seperator)
 
-    elif file_type in exel_type:
+    elif file_type in excel_type:
         data = data(uploaded_file, file_type)
 
     else:
