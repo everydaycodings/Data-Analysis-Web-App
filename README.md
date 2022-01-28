@@ -47,6 +47,5 @@ Source Code: [github link](https://github.com/everydaycodings/Data-Analysis-Web-
 ## Architecture of your Project Home Directory
 <p><img  alt="GIF" src="https://github.com/everydaycodings/files-for-multiplethings/blob/master/rt32.png" width="240" height="410" /></p>
 
-![IMG-folder_directory](https://github.com/everydaycodings/files-for-multiplethings/blob/master/rt32.png)
 
 ### If you Use this Code for Any Commercial Purpose. Please Don't Forget To mention or give shoutout to [everydaycodings](https://github.com/everydaycodings).
