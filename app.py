@@ -1,6 +1,6 @@
 from cmath import nan
 import streamlit as st
-from helper import data, describe, outliers, drop_items, download_data, filter_data, num_filter_data, rename_columns
+from helper import data, describe, outliers, drop_items, download_data, filter_data, num_filter_data, rename_columns, clear_image_cache
 import numpy as np
 
 st.set_page_config(
@@ -193,3 +193,7 @@ if uploaded_file is not None:
             st.markdown("#### Bar Plot for {} column".format(column))
             bar_plot = data[column].value_counts().reset_index().sort_values(by=column, ascending=False)
             st.bar_chart(bar_plot)
+
+    st.sidebar.info("After using this app please Click Clear Cache button so that your all data is removed from the folder.")
+    if st.sidebar.button("Clear Cache"):
+        clear_image_cache()

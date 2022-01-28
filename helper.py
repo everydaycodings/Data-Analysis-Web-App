@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 import datetime, pytz
+import glob, os
 
 
 excel_type =["vnd.ms-excel","vnd.openxmlformats-officedocument.spreadsheetml.sheet", "vnd.oasis.opendocument.spreadsheet", "vnd.oasis.opendocument.text"]
@@ -98,3 +99,9 @@ def num_filter_data(data, start_value, end_value, column, param):
 def rename_columns(data, column_names):
     rename_column = data.rename(columns=column_names)
     return rename_column
+
+
+def clear_image_cache():
+    removing_files = glob.glob('temp/*.png')
+    for i in removing_files:
+        os.remove(i)
