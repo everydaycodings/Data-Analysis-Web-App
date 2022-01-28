@@ -15,14 +15,13 @@ st.set_page_config(
      }
 )
 
+st.sidebar.title("Data Analysis Web App")
 
 file_format_type = ["csv", "txt", "xls", "xlsx", "ods", "odt"]
-st.sidebar.title("Data Analysis Web App")
-uploaded_file = st.sidebar.file_uploader("Upload Your file", type=file_format_type)
-
 functions = ["Overview", "Outliers", "Drop Columns", "Drop Categorical Rows", "Drop Numeric Rows", "Rename Columns", "Display Plot"]
-
 excel_type =["vnd.ms-excel","vnd.openxmlformats-officedocument.spreadsheetml.sheet", "vnd.oasis.opendocument.spreadsheet", "vnd.oasis.opendocument.text"]
+
+uploaded_file = st.sidebar.file_uploader("Upload Your file", type=file_format_type)
 
 if uploaded_file is not None:
 
