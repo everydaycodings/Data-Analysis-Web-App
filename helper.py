@@ -4,6 +4,10 @@ import seaborn as sns
 import streamlit as st
 import datetime, pytz
 
+
+exel_type =["vnd.ms-excel","vnd.openxmlformats-officedocument.spreadsheetml.sheet", "vnd.oasis.opendocument.spreadsheet"]
+
+
 def data(data, file_type, seperator=None):
 
     if file_type == "csv":
@@ -12,7 +16,7 @@ def data(data, file_type, seperator=None):
     elif file_type == "json":
         data = pd.read_json(data)
     
-    elif file_type == "vnd.ms-excel" or file_type == "vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+    elif file_type in exel_type:
         data = pd.read_excel(data)
     
     elif file_type == "plain":

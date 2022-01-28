@@ -16,17 +16,18 @@ st.set_page_config(
 )
 
 
-file_format_type = ["csv", "txt", "xls", "xlsx"]
+file_format_type = ["csv", "txt", "xls", "xlsx", "ods"]
 st.sidebar.title("Data Analysis Web App")
 uploaded_file = st.sidebar.file_uploader("Upload Your file", type=file_format_type)
 
 functions = ["Overview", "Outliers", "Drop Columns", "Drop Categorical Rows", "Drop Numeric Rows", "Rename Columns", "Display Plot"]
 
-exel_type =["vnd.ms-excel","vnd.openxmlformats-officedocument.spreadsheetml.sheet"]
+exel_type =["vnd.ms-excel","vnd.openxmlformats-officedocument.spreadsheetml.sheet", "vnd.oasis.opendocument.spreadsheet"]
 
 if uploaded_file is not None:
 
     file_type = uploaded_file.type.split("/")[1]
+    print(file_type)
     
 
     if file_type == "plain":
