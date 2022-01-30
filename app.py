@@ -2,6 +2,7 @@ from cmath import nan
 import streamlit as st
 from helper import data, describe, outliers, drop_items, download_data, filter_data, num_filter_data, rename_columns, clear_image_cache
 import numpy as np
+import pandas as pd
 
 st.set_page_config(
      page_title="Data Analysis Web App",
@@ -197,3 +198,12 @@ if uploaded_file is not None:
     st.sidebar.info("After using this app please Click Clear Cache button so that your all data is removed from the folder.")
     if st.sidebar.button("Clear Cache"):
         clear_image_cache()
+
+else:
+    with open('samples/sample.zip', 'rb') as f:
+        st.sidebar.download_button(
+                label="Download Sample Data and Use It",
+                data=f,
+                file_name='smaple_data.zip',
+                help = "Download some sample data and use it to explore this web app."
+            )
