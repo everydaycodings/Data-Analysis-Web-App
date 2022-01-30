@@ -49,7 +49,7 @@ Source Code: [github link](https://github.com/everydaycodings/Data-Analysis-Web-
 
 
 ### If you Use this Code for Any Commercial Purpose. Please Don't Forget To mention or give shoutout to [everydaycodings](https://github.com/everydaycodings).
-
+<br>
 ## Donate If you fell this Web App Makes your work a bit easy.
 
 #### Binance (BNB)
