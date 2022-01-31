@@ -14,8 +14,9 @@ def data(data, file_type, seperator=None):
     if file_type == "csv":
         data = pd.read_csv(data)
 
-    elif file_type == "json":
-        data = pd.read_json(data)
+   # elif file_type == "json":
+    #    data = pd.read_json(data)
+    #    data = (data["devices"].apply(pd.Series))
     
     elif file_type in excel_type:
         data = pd.read_excel(data)
