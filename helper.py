@@ -23,7 +23,7 @@ def data(data, file_type, seperator=None):
     
     elif file_type == "plain":
         try:
-            data = pd.read_csv(data, sep=seperator)
+            data = pd.read_table(data, sep=seperator)
         except ValueError:
             st.info("If you haven't Type the separator then dont worry about the error this error will go as you type the separator value and hit Enter.")
 
