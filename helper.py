@@ -14,8 +14,9 @@ def data(data, file_type, seperator=None):
     if file_type == "csv":
         data = pd.read_csv(data)
 
-    elif file_type == "json":
-        data = pd.read_json(data)
+   # elif file_type == "json":
+    #    data = pd.read_json(data)
+    #    data = (data["devices"].apply(pd.Series))
     
     elif file_type in excel_type:
         data = pd.read_excel(data)
@@ -23,7 +24,7 @@ def data(data, file_type, seperator=None):
     
     elif file_type == "plain":
         try:
-            data = pd.read_csv(data, sep=seperator)
+            data = pd.read_table(data, sep=seperator)
         except ValueError:
             st.info("If you haven't Type the separator then dont worry about the error this error will go as you type the separator value and hit Enter.")
 
@@ -47,7 +48,8 @@ def describe(data):
     global num_category, str_category
     num_category = [feature for feature in data.columns if data[feature].dtypes != "O"]
     str_category = [feature for feature in data.columns if data[feature].dtypes == "O"]
-    return data.describe(), data.shape, data.columns, num_category, str_category, data.isnull().sum(),data.dtypes.astype("str"), data.nunique(), str_category
+    column_with_null_values = data.columns[data.isnull().any()]
+    return data.describe(), data.shape, data.columns, num_category, str_category, data.isnull().sum(),data.dtypes.astype("str"), data.nunique(), str_category, column_with_null_values
 
 
 def outliers(data, num_category_outliers):
@@ -99,6 +101,19 @@ def num_filter_data(data, start_value, end_value, column, param):
 def rename_columns(data, column_names):
     rename_column = data.rename(columns=column_names)
     return rename_column
+
+
+def handling_missing_values(data, option_type, dict_value=None):
+    if option_type == "Drop all null value rows":
+        data = data.dropna()
+
+    elif option_type == "Only Drop Rows that contanines all null values":
+        data = data.dropna(how="all")
+    
+    elif option_type == "Filling in Missing Values":
+        data = data.fillna(dict_value)
+    
+    return data
 
 
 def clear_image_cache():
