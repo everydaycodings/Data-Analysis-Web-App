@@ -171,23 +171,22 @@ if uploaded_file is not None:
         rename_column_selector = st.selectbox("Please Select or Enter a column Name you want to rename: ", options=data.columns)
         rename_text_data = st.text_input("Enter the New Name for the {} column".format(rename_column_selector), max_chars=50)
 
-        if rename_text_data != "":
 
-            if st.button("Draft Changes", help="when you want to rename multiple columns/single column  so first you have to click Save Draft button this updates the data and then press Rename Columns Button."):
-                st.session_state.rename_dict[rename_column_selector] = rename_text_data
-            st.code(st.session_state.rename_dict)
+        if st.button("Draft Changes", help="when you want to rename multiple columns/single column  so first you have to click Save Draft button this updates the data and then press Rename Columns Button."):
+            st.session_state.rename_dict[rename_column_selector] = rename_text_data
+        st.code(st.session_state.rename_dict)
 
-            if st.button("Apply Changes", help="Takes your data and rename the column as your wish."):
-                rename_column = rename_columns(data, st.session_state.rename_dict)
-                st.write(rename_column)
-                export_rename_column = download_data(rename_column, label="rename_column")
-                st.session_state.rename_dict = {}
+        if st.button("Apply Changes", help="Takes your data and rename the column as your wish."):
+            rename_column = rename_columns(data, st.session_state.rename_dict)
+            st.write(rename_column)
+            export_rename_column = download_data(rename_column, label="rename_column")
+            st.session_state.rename_dict = {}
 
 # ===================================================================================================================
  
     if "Display Plot" in multi_function_selector:
 
-        multi_bar_plotting = st.multiselect(st.subheader("Enter Name or Select the Column which you Want To Plot: "), str_category)
+        multi_bar_plotting = st.multiselect("Enter Name or Select the Column which you Want To Plot: ", str_category)
         
         for i in range(len(multi_bar_plotting)):
             column = multi_bar_plotting[i]
