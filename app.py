@@ -38,7 +38,7 @@ if uploaded_file is not None:
     else:
         data = data(uploaded_file, file_type)
     
-    describe, shape, columns, num_category, str_category, null_values, dtypes, unique, str_category= describe(data)
+    describe, shape, columns, num_category, str_category, null_values, dtypes, unique, str_category, column_with_null_values = describe(data)
 
     multi_function_selector = st.sidebar.multiselect("Enter Name or Select the Column which you Want To Plot: ",functions, default=["Overview"])
 
@@ -194,7 +194,9 @@ if uploaded_file is not None:
             st.markdown("#### Bar Plot for {} column".format(column))
             bar_plot = data[column].value_counts().reset_index().sort_values(by=column, ascending=False)
             st.bar_chart(bar_plot)
-    
+
+# ====================================================================================================================    
+
     if "Handling Missing Data" in multi_function_selector:
         handling_missing_value_option = st.radio("Select What you want to do", ("Drop Null Values", "Filling in Missing Values"))
 
@@ -205,7 +207,24 @@ if uploaded_file is not None:
             st.write(droped_null_value)
         
         elif handling_missing_value_option == "Filling in Missing Values":
-            pass
+            
+            if 'missing_dict' not in st.session_state:
+                st.session_state.missing_dict = {}
+            
+            fillna_column_selector = st.selectbox("Please Select or Enter a column Name you want to fill the NaN Values: ", options=column_with_null_values)
+            fillna_text_data = st.text_input("Enter the New Value for the {} Column NaN Value".format(fillna_column_selector), max_chars=50)
+
+            if st.button("Draft Changes", help="when you want to rename multiple columns/single column  so first you have to click Save Draft button this updates the data and then press Rename Columns Button."):     
+                st.session_state.missing_dict[fillna_column_selector] = fillna_text_data
+
+            st.code(st.session_state.missing_dict)
+
+            if st.button("Rename Columns", help="Takes your data and rename the column as your wish."):
+
+                fillna_column = handling_missing_values(data,handling_missing_value_option, st.session_state.missing_dict)
+                st.write(fillna_column)
+                export_rename_column = download_data(fillna_column, label="rename_column")
+                st.session_state.missing_dict = {}
     
 
     st.sidebar.info("After using this app please Click Clear Cache button so that your all data is removed from the folder.")

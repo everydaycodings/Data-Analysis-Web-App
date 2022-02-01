@@ -48,7 +48,8 @@ def describe(data):
     global num_category, str_category
     num_category = [feature for feature in data.columns if data[feature].dtypes != "O"]
     str_category = [feature for feature in data.columns if data[feature].dtypes == "O"]
-    return data.describe(), data.shape, data.columns, num_category, str_category, data.isnull().sum(),data.dtypes.astype("str"), data.nunique(), str_category
+    column_with_null_values = data.columns[data.isnull().any()]
+    return data.describe(), data.shape, data.columns, num_category, str_category, data.isnull().sum(),data.dtypes.astype("str"), data.nunique(), str_category, column_with_null_values
 
 
 def outliers(data, num_category_outliers):
@@ -102,12 +103,15 @@ def rename_columns(data, column_names):
     return rename_column
 
 
-def handling_missing_values(data, option_type):
+def handling_missing_values(data, option_type, dict_value=None):
     if option_type == "Drop all null value rows":
         data = data.dropna()
 
     elif option_type == "Only Drop Rows that contanines all null values":
         data = data.dropna(how="all")
+    
+    elif option_type == "Filling in Missing Values":
+        data = data.fillna(dict_value)
     
     return data
 
