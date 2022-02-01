@@ -220,7 +220,7 @@ if uploaded_file is not None:
                     try:
                         st.session_state.missing_dict[fillna_column_selector] = float(fillna_text_data)
                     except:
-                        st.session_state.missing_dict[fillna_column_selector] = float(fillna_text_data)
+                        st.session_state.missing_dict[fillna_column_selector] = int(fillna_text_data)
                 else:
                     st.session_state.missing_dict[fillna_column_selector] = fillna_text_data
 
