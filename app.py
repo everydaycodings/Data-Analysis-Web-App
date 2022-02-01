@@ -1,6 +1,6 @@
 from cmath import nan
 import streamlit as st
-from helper import data, describe, outliers, drop_items, download_data, filter_data, num_filter_data, rename_columns, clear_image_cache
+from helper import data, describe, outliers, drop_items, download_data, filter_data, num_filter_data, rename_columns, clear_image_cache, handling_missing_values
 import numpy as np
 import pandas as pd
 
@@ -19,7 +19,7 @@ st.set_page_config(
 st.sidebar.title("Data Analysis Web App")
 
 file_format_type = ["csv", "txt", "xls", "xlsx", "ods", "odt"]
-functions = ["Overview", "Outliers", "Drop Columns", "Drop Categorical Rows", "Drop Numeric Rows", "Rename Columns", "Display Plot"]
+functions = ["Overview", "Outliers", "Drop Columns", "Drop Categorical Rows", "Drop Numeric Rows", "Rename Columns", "Display Plot", "Handling Missing Data"]
 excel_type =["vnd.ms-excel","vnd.openxmlformats-officedocument.spreadsheetml.sheet", "vnd.oasis.opendocument.spreadsheet", "vnd.oasis.opendocument.text"]
 
 uploaded_file = st.sidebar.file_uploader("Upload Your file", type=file_format_type)
@@ -187,13 +187,26 @@ if uploaded_file is not None:
  
     if "Display Plot" in multi_function_selector:
 
-        multi_bar_plotting = st.multiselect("Enter Name or Select the Column which you Want To Plot: ", str_category)
+        multi_bar_plotting = st.multiselect(st.subheader("Enter Name or Select the Column which you Want To Plot: "), str_category)
         
         for i in range(len(multi_bar_plotting)):
             column = multi_bar_plotting[i]
             st.markdown("#### Bar Plot for {} column".format(column))
             bar_plot = data[column].value_counts().reset_index().sort_values(by=column, ascending=False)
             st.bar_chart(bar_plot)
+    
+    if "Handling Missing Data" in multi_function_selector:
+        handling_missing_value_option = st.radio("Select What you want to do", ("Drop Null Values", "Filling in Missing Values"))
+
+        if handling_missing_value_option == "Drop Null Values":
+
+            drop_null_values_option = st.radio("Choose your option as suted: ", ("Drop all null value rows", "Only Drop Rows that contanines all null values"))
+            droped_null_value = handling_missing_values(data, drop_null_values_option)
+            st.write(droped_null_value)
+        
+        elif handling_missing_value_option == "Filling in Missing Values":
+            pass
+    
 
     st.sidebar.info("After using this app please Click Clear Cache button so that your all data is removed from the folder.")
     if st.sidebar.button("Clear Cache"):

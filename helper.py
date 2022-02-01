@@ -102,6 +102,16 @@ def rename_columns(data, column_names):
     return rename_column
 
 
+def handling_missing_values(data, option_type):
+    if option_type == "Drop all null value rows":
+        data = data.dropna()
+
+    elif option_type == "Only Drop Rows that contanines all null values":
+        data = data.dropna(how="all")
+    
+    return data
+
+
 def clear_image_cache():
     removing_files = glob.glob('temp/*.png')
     for i in removing_files:
