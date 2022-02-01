@@ -177,7 +177,7 @@ if uploaded_file is not None:
                 st.session_state.rename_dict[rename_column_selector] = rename_text_data
             st.code(st.session_state.rename_dict)
 
-            if st.button("Rename Columns", help="Takes your data and rename the column as your wish."):
+            if st.button("Apply Changes", help="Takes your data and rename the column as your wish."):
                 rename_column = rename_columns(data, st.session_state.rename_dict)
                 st.write(rename_column)
                 export_rename_column = download_data(rename_column, label="rename_column")
@@ -205,6 +205,7 @@ if uploaded_file is not None:
             drop_null_values_option = st.radio("Choose your option as suted: ", ("Drop all null value rows", "Only Drop Rows that contanines all null values"))
             droped_null_value = handling_missing_values(data, drop_null_values_option)
             st.write(droped_null_value)
+            export_rename_column = download_data(droped_null_value, label="fillna_column")
         
         elif handling_missing_value_option == "Filling in Missing Values":
             
@@ -214,16 +215,23 @@ if uploaded_file is not None:
             fillna_column_selector = st.selectbox("Please Select or Enter a column Name you want to fill the NaN Values: ", options=column_with_null_values)
             fillna_text_data = st.text_input("Enter the New Value for the {} Column NaN Value".format(fillna_column_selector), max_chars=50)
 
-            if st.button("Draft Changes", help="when you want to rename multiple columns/single column  so first you have to click Save Draft button this updates the data and then press Rename Columns Button."):     
-                st.session_state.missing_dict[fillna_column_selector] = fillna_text_data
+            if st.button("Draft Changes", help="when you want to fill multiple columns/single column null values so first you have to click Save Draft button this updates the data and then press Rename Columns Button."):     
+                
+                if fillna_column_selector in num_category:
+                    try:
+                        st.session_state.missing_dict[fillna_column_selector] = float(fillna_text_data)
+                    except:
+                        st.session_state.missing_dict[fillna_column_selector] = float(fillna_text_data)
+                else:
+                    st.session_state.missing_dict[fillna_column_selector] = fillna_text_data
 
             st.code(st.session_state.missing_dict)
 
-            if st.button("Rename Columns", help="Takes your data and rename the column as your wish."):
+            if st.button("Apply Changes", help="Takes your data and Fill NaN Values for columns as your wish."):
 
                 fillna_column = handling_missing_values(data,handling_missing_value_option, st.session_state.missing_dict)
                 st.write(fillna_column)
-                export_rename_column = download_data(fillna_column, label="rename_column")
+                export_rename_column = download_data(fillna_column, label="fillna_column")
                 st.session_state.missing_dict = {}
     
 
