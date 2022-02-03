@@ -146,7 +146,7 @@ def handling_missing_values(data, option_type, dict_value=None):
     return data
 
 
-def data_wrangling(data1, data2, key, same_columns):
+def data_wrangling(data1, data2, key):
     data = pd.merge(data1, data2, on=key, suffixes=("_extra", "_extra0"))
     data = data[data.columns.drop(list(data.filter(regex='_extra')))]
     return data
