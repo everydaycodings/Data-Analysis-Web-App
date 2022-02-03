@@ -241,9 +241,12 @@ if uploaded_file is not None:
 
         if data_wrangling_option == "Merging On Index":
             data_wrangling_uploaded_file = st.file_uploader("Upload Your Second file you want to merge", type=uploaded_file.name.split(".")[1])
+
             if data_wrangling_uploaded_file is not None:
+
                 second_data = data(data_wrangling_uploaded_file, file_type=data_wrangling_uploaded_file.type.split("/")[1])
                 merge_key_selector = st.selectbox("Select A Comlumn by which you want to merge on two Dataset", options=data.columns)
+                
                 merge_data = data_wrangling(data, second_data, merge_key_selector)
                 st.write(merge_data)
 
