@@ -30,6 +30,34 @@ def data(data, file_type, seperator=None):
 
     return data
 
+def seconddata(data, file_type, seperator=None):
+
+    if file_type == "csv":
+        data = pd.read_csv(data)
+
+   # elif file_type == "json":
+    #    data = pd.read_json(data)
+    #    data = (data["devices"].apply(pd.Series))
+    
+    elif file_type in excel_type:
+        data = pd.read_excel(data)
+        st.sidebar.info("If you are using Excel file so there could be chance of getting minor error(temporary sollution: avoid the error by removing overview option from input box) so bear with it. It will be fixed soon")
+    
+    elif file_type == "plain":
+        try:
+            data = pd.read_table(data, sep=seperator)
+        except ValueError:
+            st.info("If you haven't Type the separator then dont worry about the error this error will go as you type the separator value and hit Enter.")
+
+    return data
+
+def match_elements(list_a, list_b):
+    non_match = []
+    for i in list_a:
+        if i  in list_b:
+            non_match.append(i)
+    return non_match
+
 
 def download_data(data, label):
     current_time = datetime.datetime.now(pytz.timezone('Asia/Kolkata'))

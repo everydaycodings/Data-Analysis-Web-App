@@ -1,7 +1,7 @@
 from cmath import nan
 from datetime import date
 import streamlit as st
-from helper import data, describe, outliers, drop_items, download_data, filter_data, num_filter_data, rename_columns, clear_image_cache, handling_missing_values, data_wrangling
+from helper import data, seconddata, match_elements, describe, outliers, drop_items, download_data, filter_data, num_filter_data, rename_columns, clear_image_cache, handling_missing_values, data_wrangling
 import numpy as np
 import pandas as pd
 
@@ -244,8 +244,9 @@ if uploaded_file is not None:
 
             if data_wrangling_uploaded_file is not None:
 
-                second_data = data(data_wrangling_uploaded_file, file_type=data_wrangling_uploaded_file.type.split("/")[1])
-                merge_key_selector = st.selectbox("Select A Comlumn by which you want to merge on two Dataset", options=data.columns)
+                second_data = seconddata(data_wrangling_uploaded_file, file_type=data_wrangling_uploaded_file.type.split("/")[1])
+                same_columns = match_elements(data, second_data)
+                merge_key_selector = st.selectbox("Select A Comlumn by which you want to merge on two Dataset", options=same_columns)
                 
                 merge_data = data_wrangling(data, second_data, merge_key_selector)
                 st.write(merge_data)
