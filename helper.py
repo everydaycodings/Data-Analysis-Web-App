@@ -116,6 +116,12 @@ def handling_missing_values(data, option_type, dict_value=None):
     return data
 
 
+def data_wrangling(data1, data2, key):
+    data = pd.merge(data1, data2, on=key)
+    return data
+
+
+
 def clear_image_cache():
     removing_files = glob.glob('temp/*.png')
     for i in removing_files:

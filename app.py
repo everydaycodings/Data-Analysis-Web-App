@@ -1,6 +1,7 @@
 from cmath import nan
+from datetime import date
 import streamlit as st
-from helper import data, describe, outliers, drop_items, download_data, filter_data, num_filter_data, rename_columns, clear_image_cache, handling_missing_values
+from helper import data, describe, outliers, drop_items, download_data, filter_data, num_filter_data, rename_columns, clear_image_cache, handling_missing_values, data_wrangling
 import numpy as np
 import pandas as pd
 
@@ -19,7 +20,7 @@ st.set_page_config(
 st.sidebar.title("Data Analysis Web App")
 
 file_format_type = ["csv", "txt", "xls", "xlsx", "ods", "odt"]
-functions = ["Overview", "Outliers", "Drop Columns", "Drop Categorical Rows", "Drop Numeric Rows", "Rename Columns", "Display Plot", "Handling Missing Data"]
+functions = ["Overview", "Outliers", "Drop Columns", "Drop Categorical Rows", "Drop Numeric Rows", "Rename Columns", "Display Plot", "Handling Missing Data", "Data Wrangling"]
 excel_type =["vnd.ms-excel","vnd.openxmlformats-officedocument.spreadsheetml.sheet", "vnd.oasis.opendocument.spreadsheet", "vnd.oasis.opendocument.text"]
 
 uploaded_file = st.sidebar.file_uploader("Upload Your file", type=file_format_type)
@@ -232,8 +233,22 @@ if uploaded_file is not None:
                 st.write(fillna_column)
                 export_rename_column = download_data(fillna_column, label="fillna_column")
                 st.session_state.missing_dict = {}
-    
 
+# ==========================================================================================================================================
+
+    if "Data Wrangling" in multi_function_selector:
+        data_wrangling_option = st.radio("Choose your option as suted: ", ("Merging On Index", "Concatenating On Axis"))
+
+        if data_wrangling_option == "Merging On Index":
+            data_wrangling_uploaded_file = st.file_uploader("Upload Your Second file you want to merge", type=uploaded_file.name.split(".")[1])
+            if data_wrangling_uploaded_file is not None:
+                second_data = data(data_wrangling_uploaded_file, file_type=data_wrangling_uploaded_file.type.split("/")[1])
+                merge_key_selector = st.selectbox("Select A Comlumn by which you want to merge on two Dataset", options=data.columns)
+                merge_data = data_wrangling(data, second_data, merge_key_selector)
+                st.write(merge_data)
+
+
+# ==========================================================================================================================================
     st.sidebar.info("After using this app please Click Clear Cache button so that your all data is removed from the folder.")
     if st.sidebar.button("Clear Cache"):
         clear_image_cache()
