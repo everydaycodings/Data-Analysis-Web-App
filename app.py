@@ -248,7 +248,7 @@ if uploaded_file is not None:
                 same_columns = match_elements(data, second_data)
                 merge_key_selector = st.selectbox("Select A Comlumn by which you want to merge on two Dataset", options=same_columns)
                 
-                merge_data = data_wrangling(data, second_data, merge_key_selector)
+                merge_data = data_wrangling(data, second_data, merge_key_selector, same_columns)
                 st.write(merge_data)
 
 

@@ -1,3 +1,4 @@
+from sys import prefix
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -145,8 +146,9 @@ def handling_missing_values(data, option_type, dict_value=None):
     return data
 
 
-def data_wrangling(data1, data2, key):
-    data = pd.merge(data1, data2, on=key)
+def data_wrangling(data1, data2, key, same_columns):
+    data = pd.merge(data1, data2, on=key, suffixes=("_extra", "_extra0"))
+    data = data[data.columns.drop(list(data.filter(regex='_extra')))]
     return data
 
 
