@@ -250,16 +250,18 @@ if uploaded_file is not None:
                 
                 merge_data = data_wrangling(data, second_data, merge_key_selector, data_wrangling_option)
                 st.write(merge_data)
+                download_data(merge_data, label="merging_on_index")
 
         if data_wrangling_option == "Concatenating On Axis":
 
             data_wrangling_concatenating_uploaded_file = st.file_uploader("Upload Your Second file you want to merge", type=uploaded_file.name.split(".")[1])
 
             if data_wrangling_concatenating_uploaded_file is not None:
-                
+
                 second_data = seconddata(data_wrangling_concatenating_uploaded_file, file_type=data_wrangling_concatenating_uploaded_file.type.split("/")[1])
-                merge_data = data_wrangling(data, second_data, None, data_wrangling_option)
-                st.write(merge_data)
+                concatenating_data = data_wrangling(data, second_data, None, data_wrangling_option)
+                st.write(concatenating_data)
+                download_data(concatenating_data, label="concatenating_on_axis")
         
 # ==========================================================================================================================================
     st.sidebar.info("After using this app please Click Clear Cache button so that your all data is removed from the folder.")
