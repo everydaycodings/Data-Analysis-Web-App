@@ -254,7 +254,7 @@ if uploaded_file is not None:
 
         if data_wrangling_option == "Concatenating On Axis":
 
-            data_wrangling_concatenating_uploaded_file = st.file_uploader("Upload Your Second file you want to merge", type=uploaded_file.name.split(".")[1])
+            data_wrangling_concatenating_uploaded_file = st.file_uploader("Upload Your Second file you want to Concatenate", type=uploaded_file.name.split(".")[1])
 
             if data_wrangling_concatenating_uploaded_file is not None:
 
