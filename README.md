@@ -12,8 +12,9 @@
 - Gives a **detailed overview** of your data.
 - You have the option to **plot graphs** for your data.
 - You can see **Outliers** in your data in a visulization way.
-- You can *drop* *multiple columns* and *rename columns*.
+- You can **drop multiple columns** and **rename columns**.
 - You can *drop* **multiple categorical Rows** and **Numerical Rows** by giving **multiple conditions**.
+- Handling **Handling Missing Data**, **Merging On Index** and **Concatenating On Axis**
 - You can **download/export** your edited data.
 
 ## Upcomming Features for the WebApp:
