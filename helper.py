@@ -146,10 +146,15 @@ def handling_missing_values(data, option_type, dict_value=None):
     return data
 
 
-def data_wrangling(data1, data2, key):
-    data = pd.merge(data1, data2, on=key, suffixes=("_extra", "_extra0"))
-    data = data[data.columns.drop(list(data.filter(regex='_extra')))]
-    return data
+def data_wrangling(data1, data2, key, usertype):
+    if usertype == "Merging On Index":
+        data = pd.merge(data1, data2, on=key, suffixes=("_extra", "_extra0"))
+        data = data[data.columns.drop(list(data.filter(regex='_extra')))]
+        return data
+    
+    elif usertype == "Concatenating On Axis":
+        data = pd.concat([data1, data2], ignore_index=True)
+        return data
 
 
 

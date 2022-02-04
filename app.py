@@ -240,18 +240,27 @@ if uploaded_file is not None:
         data_wrangling_option = st.radio("Choose your option as suted: ", ("Merging On Index", "Concatenating On Axis"))
 
         if data_wrangling_option == "Merging On Index":
-            data_wrangling_uploaded_file = st.file_uploader("Upload Your Second file you want to merge", type=uploaded_file.name.split(".")[1])
+            data_wrangling_merging_uploaded_file = st.file_uploader("Upload Your Second file you want to merge", type=uploaded_file.name.split(".")[1])
 
-            if data_wrangling_uploaded_file is not None:
+            if data_wrangling_merging_uploaded_file is not None:
 
-                second_data = seconddata(data_wrangling_uploaded_file, file_type=data_wrangling_uploaded_file.type.split("/")[1])
+                second_data = seconddata(data_wrangling_merging_uploaded_file, file_type=data_wrangling_merging_uploaded_file.type.split("/")[1])
                 same_columns = match_elements(data, second_data)
                 merge_key_selector = st.selectbox("Select A Comlumn by which you want to merge on two Dataset", options=same_columns)
                 
-                merge_data = data_wrangling(data, second_data, merge_key_selector)
+                merge_data = data_wrangling(data, second_data, merge_key_selector, data_wrangling_option)
                 st.write(merge_data)
 
+        if data_wrangling_option == "Concatenating On Axis":
 
+            data_wrangling_concatenating_uploaded_file = st.file_uploader("Upload Your Second file you want to merge", type=uploaded_file.name.split(".")[1])
+
+            if data_wrangling_concatenating_uploaded_file is not None:
+                
+                second_data = seconddata(data_wrangling_concatenating_uploaded_file, file_type=data_wrangling_concatenating_uploaded_file.type.split("/")[1])
+                merge_data = data_wrangling(data, second_data, None, data_wrangling_option)
+                st.write(merge_data)
+        
 # ==========================================================================================================================================
     st.sidebar.info("After using this app please Click Clear Cache button so that your all data is removed from the folder.")
     if st.sidebar.button("Clear Cache"):
