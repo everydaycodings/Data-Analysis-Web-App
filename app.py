@@ -213,8 +213,10 @@ if uploaded_file is not None:
                 st.session_state.missing_dict = {}
             
             fillna_column_selector = st.selectbox("Please Select or Enter a column Name you want to fill the NaN Values: ", options=column_with_null_values)
+            
             if fillna_column_selector in num_category:
                 st.write("Mean Value:",data[fillna_column_selector].mean(), "Mode Value:", data[fillna_column_selector].mode().values[0])
+            
             fillna_text_data = st.text_input("Enter the New Value for the {} Column NaN Value".format(fillna_column_selector), max_chars=50)
 
             if st.button("Draft Changes", help="when you want to fill multiple columns/single column null values so first you have to click Save Draft button this updates the data and then press Rename Columns Button."):     
